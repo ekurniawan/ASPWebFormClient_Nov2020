@@ -9,6 +9,7 @@ namespace ASPWebFormClient.Services
 {
     public class BarangServices
     {
+        //
         private RestClient _restClient;
         public BarangServices()
         {
