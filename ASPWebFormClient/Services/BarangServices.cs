@@ -33,5 +33,24 @@ namespace ASPWebFormClient.Services
             }
             return response.Data;
         }
+
+        public Barang GetByKode(string kodebarang)
+        {
+            var request = new RestRequest("api/BarangDb/{kodebarang}", Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
+            request.AddParameter("kodebarang", kodebarang, ParameterType.UrlSegment);
+
+            var response = _restClient.Execute<Barang>(request);
+            if (response.Data == null)
+            {
+                throw new Exception($"Error:{response.ErrorMessage}");
+            }
+
+            return response.Data;
+        }
+
+
     }
 }

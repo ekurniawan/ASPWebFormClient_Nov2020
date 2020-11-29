@@ -8,11 +8,11 @@
     <asp:GridView ID="gvBarang" CssClass="table table-striped" 
         runat="server" AutoGenerateColumns="False" DataSourceID="odsBarang">
         <Columns>
-            <asp:BoundField DataField="kodebarang" HeaderText="kodebarang" SortExpression="kodebarang" />
-            <asp:BoundField DataField="namabarang" HeaderText="namabarang" SortExpression="namabarang" />
+            <asp:BoundField DataField="kodebarang" HeaderText="Kode Barang" SortExpression="kodebarang" />
+            <asp:BoundField DataField="namabarang" HeaderText="Nama Barang" SortExpression="namabarang" />
             <asp:BoundField DataField="stok" HeaderText="stok" SortExpression="stok" />
-            <asp:BoundField DataField="hargabeli" HeaderText="hargabeli" SortExpression="hargabeli" />
-            <asp:BoundField DataField="hargajual" HeaderText="hargajual" SortExpression="hargajual" />
+            <asp:BoundField DataField="hargabeli" HeaderText="Harga Beli" SortExpression="hargabeli" />
+            <asp:BoundField DataField="hargajual" HeaderText="Harga Jual" SortExpression="hargajual" />
         </Columns>
     </asp:GridView>
 
