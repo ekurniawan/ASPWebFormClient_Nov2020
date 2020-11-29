@@ -82,5 +82,58 @@ namespace ASPWebFormClient.Services
             }
         }
 
+        public void UpdateBarang(string namabarang, int stok,
+            decimal hargabeli, decimal hargajual, string kodebarang)
+        {
+            var updateBarang = new Barang
+            {
+                namabarang = namabarang,
+                stok = stok,
+                hargabeli = hargabeli,
+                hargajual = hargajual
+            };
+
+            var request = new RestRequest("api/BarangDb/{kodebarang}", Method.PUT)
+            {
+                RequestFormat = DataFormat.Json
+            };
+            request.AddParameter("kodebarang", kodebarang, ParameterType.UrlSegment);
+            request.AddJsonBody(updateBarang);
+
+            try
+            {
+                var response = _restClient.Execute(request);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new Exception($"Error: gagal mengupdate data - {response.ErrorMessage}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void DeleteBarang(string kodebarang)
+        {
+            var result = GetByKode(kodebarang);
+            if (result == null)
+                throw new Exception($"Data kode {kodebarang} tidak ditemukan");
+
+            var request = new RestRequest("api/BarangDb/{kodebarang}", Method.DELETE)
+            {
+                RequestFormat = DataFormat.Json
+            };
+            request.AddParameter("kodebarang", kodebarang, ParameterType.UrlSegment);
+            try
+            {
+                var response = _restClient.Execute(request);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new Exception($"Error: {response.ErrorMessage}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
